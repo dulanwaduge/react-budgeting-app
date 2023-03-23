@@ -4,9 +4,13 @@ import {
 } from "react-router-dom";
 
 // Routes
-import Dashboard, { dashboardLoader } from "./pages/Dashboard";
+import Dashboard, { dashboardAction, dashboardLoader } from "./pages/Dashboard";
 import Error from "./pages/Error";
 import Main, { mainLoader } from "./layouts/Main";
+
+// Toastify
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 // Actions
 import { logoutAction } from "./actions/logout";
@@ -23,6 +27,7 @@ const router = createBrowserRouter([
         path: "/",
         element: <Dashboard />,
         loader: dashboardLoader,
+        action: dashboardAction,
         errorElement: <Error />
       },
       {
@@ -36,6 +41,7 @@ const router = createBrowserRouter([
 function App() {
   return <div className="App">
     <RouterProvider router={router} />
+    <ToastContainer />
   </div>;
 }
 
