@@ -5,10 +5,13 @@ import { toast } from "react-toastify";
 import Intro from "../components/Intro";
 //  helper functions
 import { fetchData } from "../helpers"
-// loader
+
+// loader function
 export function dashboardLoader() {
   const userName = fetchData("userName");
-  return { userName }
+  const bugets = fetchData("budgets");
+
+  return { userName, budgets }  
 }
 
 // action
@@ -30,7 +33,14 @@ const Dashboard = () => {
 
   return (
     <>
-      {userName ? (<p>{userName}</p>) : <Intro />}
+      {userName ? (
+        <div className="dashboard">
+          <h1>Welcome back, <span className="accent">{userName}</span></h1>
+          <div className="grid-sm">
+
+          </div>
+        </div>
+      ) : <Intro />}
     </>
   )
 }
