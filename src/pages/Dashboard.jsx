@@ -5,11 +5,12 @@ import { toast } from "react-toastify";
 import Intro from "../components/Intro";
 //  helper functions
 import { fetchData } from "../helpers"
+import AddBudgetForm from "../components/AddBudgetForm"
 
 // loader function
 export function dashboardLoader() {
   const userName = fetchData("userName");
-  const bugets = fetchData("budgets");
+  const budgets = fetchData("budgets");
 
   return { userName, budgets }  
 }
@@ -29,7 +30,7 @@ export async function dashboardAction({request}) {
 }
 
 const Dashboard = () => {
-  const { userName } = useLoaderData()
+  const { userName, budgets } = useLoaderData()
 
   return (
     <>
@@ -37,7 +38,12 @@ const Dashboard = () => {
         <div className="dashboard">
           <h1>Welcome back, <span className="accent">{userName}</span></h1>
           <div className="grid-sm">
-
+            {/* { budgets ? () : () } */}
+            <div className="grid-lg">
+              <div className="flex-lg">
+                <AddBudgetForm />
+              </div>
+            </div>
           </div>
         </div>
       ) : <Intro />}
